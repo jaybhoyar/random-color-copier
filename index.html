@@ -31,8 +31,8 @@
 				margin-bottom: 50px;
 				/* border: 1px solid #000; */
 				border-radius: 5px;
-			}
-			.row:hover {
+				padding: 20px 50px;
+				box-sizing: border-box;
 			}
 		</style>
 	</head>
@@ -103,7 +103,9 @@
 
 			let all = document.querySelectorAll(".row");
 			for (let i = 0; i < all.length; i++) {
-				all[i].style.backgroundColor = randomColor();
+				let colors = randomColor();
+				all[i].style.backgroundColor = colors;
+				all[i].innerHTML = colors;
 			}
 		</script>
 	</body>
