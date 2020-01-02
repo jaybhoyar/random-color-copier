@@ -1,0 +1,47 @@
+//  Random Color function
+function randomColor() {
+	let words = "ABCDEF0123456789".split("");
+	let color = "#";
+	for (i = 0; i < 6; i++) {
+		color += words[Math.floor(Math.random() * 15)];
+	}
+	return color;
+}
+
+// document.getElementById(
+// 	"row1"
+// ).style.backgroundColor = randomColor();
+// document.getElementById(
+// 	"row2"
+// ).style.backgroundColor = randomColor();
+// document.getElementById(
+// 	"row3"
+// ).style.backgroundColor = randomColor();
+
+// Adding Random Colors to boxes
+function makedivRows() {
+	var d = document.getElementById("div1");
+	d.className += "row";
+	for (let i = 0; i <= 100; i++) {
+		var divRow = document.createElement("div");
+		divRow.className = "row";
+		document.body.appendChild(divRow);
+	}
+	let all = document.querySelectorAll(".row");
+	for (let i = 0; i < all.length; i++) {
+		let colors = randomColor();
+		all[i].style.backgroundColor = colors;
+		all[i].innerHTML = colors;
+		all[i].onmouseover = function logMouseOver() {
+			all[i].style.textShadow = "-1px 0px 5px rgba(0,0,0,0.46)";
+			all[i].style.boxShadow =
+				" 0px 0px 8px 4px rgba(230, 230, 230,0.5)";
+			all[i].style.cursor = "pointer";
+		};
+		all[i].onmouseout = function logMouseOver() {
+			all[i].style.textShadow = "";
+			all[i].style.boxShadow = "";
+			all[i].style.cursor = "";
+		};
+	}
+}
