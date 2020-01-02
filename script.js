@@ -7,22 +7,11 @@ function randomColor() {
 	}
 	return color;
 }
-
-// document.getElementById(
-// 	"row1"
-// ).style.backgroundColor = randomColor();
-// document.getElementById(
-// 	"row2"
-// ).style.backgroundColor = randomColor();
-// document.getElementById(
-// 	"row3"
-// ).style.backgroundColor = randomColor();
-
 // Adding Random Colors to boxes
 function makedivRows() {
 	var d = document.getElementById("div1");
 	d.className += "row";
-	for (let i = 0; i <= 100; i++) {
+	for (let i = 0; i <= 95; i++) {
 		var divRow = document.createElement("div");
 		divRow.className = "row";
 		document.body.appendChild(divRow);
