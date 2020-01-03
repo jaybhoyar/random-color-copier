@@ -7,11 +7,24 @@ function randomColor() {
 	}
 	return color;
 }
+function copyText() {
+	var copyText = document.querySelectorAll(".rows");
+
+	/* Select the text field */
+	copyText.select();
+
+	/* Copy the text inside the text field */
+	document.execCommand("copy");
+
+	/* Alert the copied text */
+	alert("Copied the text: " + copyText.value);
+}
 // Adding Random Colors to boxes
+
 function makedivRows() {
 	var d = document.getElementById("div1");
 	d.className += "row";
-	for (let i = 0; i <= 95; i++) {
+	for (let i = 0; i <= 71; i++) {
 		var divRow = document.createElement("div");
 		divRow.className = "row";
 		document.body.appendChild(divRow);
@@ -21,11 +34,11 @@ function makedivRows() {
 		let colors = randomColor();
 		all[i].style.backgroundColor = colors;
 		all[i].innerHTML = colors;
+
 		all[i].onmouseover = function logMouseOver() {
 			all[i].style.textShadow = "-1px 0px 5px rgba(0,0,0,0.46)";
 			all[i].style.boxShadow = " 0px 0px 8px 4px rgba(230, 230, 230,0.5)";
 			all[i].style.cursor = "pointer";
-			/* Select the text field */
 		};
 		all[i].onmouseout = function logMouseOver() {
 			all[i].style.textShadow = "";
@@ -33,14 +46,4 @@ function makedivRows() {
 			all[i].style.cursor = "";
 		};
 	}
-}
-function copyCode() {
-	/* Select the text field */
-	var copyText = document.getElementById("div1");
-
-	/* Select the text field */
-	copyText.innerHTML.select();
-
-	/* Copy the text inside the text field */
-	document.execCommand("copy");
 }
