@@ -7,33 +7,23 @@ function randomColor() {
 	}
 	return color;
 }
-function copyText() {
-	var copyText = document.querySelectorAll(".rows");
 
-	/* Select the text field */
-	copyText.select();
-
-	/* Copy the text inside the text field */
-	document.execCommand("copy");
-
-	/* Alert the copied text */
-	alert("Copied the text: " + copyText.value);
-}
 // Adding Random Colors to boxes
 
 function makedivRows() {
-	var d = document.getElementById("div1");
-	d.className += "row";
+	// var d = document.getElementById("div1");
+	// d.className += "row";
 	for (let i = 0; i <= 71; i++) {
 		var divRow = document.createElement("div");
-		divRow.className = "row";
+		divRow.classList.add("row");
 		document.body.appendChild(divRow);
+		divRow.addEventListener("click", selectValue);
 	}
-	let all = document.querySelectorAll(".row");
+	var all = document.querySelectorAll(".row");
 	for (let i = 0; i < all.length; i++) {
 		let colors = randomColor();
 		all[i].style.backgroundColor = colors;
-		all[i].innerHTML = colors;
+		all[i].innerText = colors;
 
 		all[i].onmouseover = function logMouseOver() {
 			all[i].style.textShadow = "-1px 0px 5px rgba(0,0,0,0.46)";
@@ -46,4 +36,21 @@ function makedivRows() {
 			all[i].style.cursor = "";
 		};
 	}
+	var a = Array.from(all);
+	console.log(a);
+
+	function selectValue(event) {
+		var range = document.createRange();
+		range.selectNode(event.target);
+		window.getSelection().removeAllRanges(); // clear current selection
+		window.getSelection().addRange(range); // to select text
+		document.execCommand("copy");
+		//window.getSelection().removeAllRanges(); // to deselect
+		event.target.innerText = "Copied";
+		event.target.style.fontWeight = "600";
+		event.target.style.fontSize = "1.2rem";
+		event.target.style.color = "#fff";
+	}
 }
+
+makedivRows();
