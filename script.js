@@ -11,8 +11,6 @@ function randomColor() {
 // Adding Random Colors to boxes
 
 function makedivRows() {
-	// var d = document.getElementById("div1");
-	// d.className += "row";
 	for (let i = 0; i <= 71; i++) {
 		var divRow = document.createElement("div");
 		divRow.classList.add("row");
@@ -35,21 +33,30 @@ function makedivRows() {
 			all[i].style.boxShadow = "";
 			all[i].style.cursor = "";
 		};
-	}
-	var a = Array.from(all);
-	console.log(a);
+		all[i].addEventListener("click", selectValue);
+		function selectValue(event) {
+			var range = document.createRange();
+			range.selectNode(event.target);
+			window.getSelection().removeAllRanges(); // clear current selection
+			window.getSelection().addRange(range); // to select text
+			document.execCommand("copy");
+			//window.getSelection().removeAllRanges(); // to deselect
+			setTimeout(addCopied, 0);
+			setTimeout(removeCopied, 2000);
+			function addCopied() {
+				event.target.innerText = "Copied";
+				event.target.style.color = "#fff";
+				event.target.style.fontWeight = "600";
+				event.target.style.fontSize = "1.2rem";
+			}
 
-	function selectValue(event) {
-		var range = document.createRange();
-		range.selectNode(event.target);
-		window.getSelection().removeAllRanges(); // clear current selection
-		window.getSelection().addRange(range); // to select text
-		document.execCommand("copy");
-		//window.getSelection().removeAllRanges(); // to deselect
-		event.target.innerText = "Copied";
-		event.target.style.fontWeight = "600";
-		event.target.style.fontSize = "1.2rem";
-		event.target.style.color = "#fff";
+			function removeCopied() {
+				event.target.innerText = colors;
+				event.target.style.fontWeight = "400";
+				event.target.style.fontSize = "1rem";
+				event.target.style.color = "#000";
+			}
+		}
 	}
 }
 
